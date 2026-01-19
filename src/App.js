@@ -56,9 +56,9 @@ export default function Portfolio() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          service_id: 'service_34l57gm',
-          template_id: 'template_6azh2mb',
-          user_id: 'q-tnTlNCu04xF8NF8',
+          service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
           template_params: {
             from_name: formData.name,
             from_email: formData.email,
@@ -379,7 +379,7 @@ export default function Portfolio() {
               ) : sectionId === 'education' ? (
                 <div className="flex flex-col items-center">
                   <img 
-                    src="https://content.sportslogos.net/logos/33/817/full/rutgers_scarlet_knights_logo_primary_dark_2016_sportslogosnet-8229.png"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Rutgers_Scarlet_Knights_logo.svg/1200px-Rutgers_Scarlet_Knights_logo.svg.png"
                     alt="Rutgers University Logo"
                     className="w-48 h-48 object-contain mb-8"
                   />
