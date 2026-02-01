@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Mail, Github, Linkedin, Briefcase, GraduationCap, Code, User, Download, Moon, Sun, ArrowUp, Award } from 'lucide-react';
+import { ChevronDown, Mail, Github, Linkedin, Briefcase, GraduationCap, Code, User, Download, Moon, Sun, ArrowUp, Award, Heart, Coffee, Target, Zap, Book, Globe, Users, Laptop } from 'lucide-react';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('');
@@ -56,9 +56,9 @@ export default function Portfolio() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID,
-          template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-          user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+          service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_34l57gm',
+          template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_6azh2mb',
+          user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'q-tnTlNCu04xF8NF8',
           template_params: {
             from_name: formData.name,
             from_email: formData.email,
@@ -133,19 +133,19 @@ export default function Portfolio() {
       title: 'Projects',
       items: [
         {
-          company: 'AI Trading Bot',
+          company: 'Intellistock AI RSI Analyzer',
           role: 'Personal Project',
-          location: 'Python, TensorFlow',
+          skills: 'Python, Flask, yfinance, Pandas, HTML, JavaScript',
           date: '2025',
-          description: 'Built an automated trading system using machine learning algorithms to predict stock movements. Achieved 15% ROI in backtesting.',
+           description: 'Engineered a real-time stock analysis platform using Flask and yfinance API, implementing RSI calculation algorithms with Pandas to process 30-day historical data and generate automated buy/sell/hold recommendations based on technical indicators. Implemented Relative Strength Index (RSI) calculation algorithm using Pandas rolling window operations on 14-period price deltas, computing average gains/losses through vectorized operations to generate momentum indicators with 100-0 scale output for overbought/oversold signal detection',
           status: 'Completed'
         },
         {
-          company: 'E-Commerce Platform',
-          role: 'Team Project',
-          location: 'React, Node.js, MongoDB',
-          date: '2024',
-          description: 'Developed a full-featured e-commerce platform with payment integration, inventory management, and real-time notifications.',
+          company: 'MedTrack',
+          role: 'Personal Project',
+          skills: 'React, Flask, SQLAlchemy, Chart.js, JWT, OpenFDA API',
+          date: '2026',
+          description: 'Created a full-stack medication management system using React and Flask, implementing RESTful API with 8 endpoints serving JWT-authenticated requests, SQLAlchemy ORM for database operations, and Chart.js visualizations to track adherence patterns across configurable time periods with automated insight generation. Built interactive analytics dashboard using Chart.js to visualize adherence trends through line and doughnut charts, calculating daily adherence rates from timestamped log entries and generating personalized insights based on 30/60/90-day statistical thresholds to improve patient outcomes',
           status: 'Completed'
         }
       ]
@@ -153,16 +153,7 @@ export default function Portfolio() {
     about: {
       icon: User,
       title: 'About',
-      items: [
-        {
-          company: 'Profile',
-          role: 'Software Developer & Problem Solver',
-          location: 'Based in New York',
-          date: '2026',
-          description: 'Passionate about building innovative solutions and learning new technologies. Experienced in full-stack development, quantitative analysis, and machine learning. Always excited to tackle challenging problems and collaborate with talented teams.',
-          status: 'Current'
-        }
-      ]
+      isAbout: true
     },
     contact: {
       icon: Mail,
@@ -379,7 +370,7 @@ export default function Portfolio() {
               ) : sectionId === 'education' ? (
                 <div className="flex flex-col items-center">
                   <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Rutgers_Scarlet_Knights_logo.svg/1200px-Rutgers_Scarlet_Knights_logo.svg.png"
+                    src="https://www.myyardsy.com/cdn/shop/files/frame_ce768060-0316-46ba-aaa3-ee06c05e90df.jpg?v=1732253856&width=480"
                     alt="Rutgers University Logo"
                     className="w-48 h-48 object-contain mb-8"
                   />
@@ -403,6 +394,139 @@ export default function Portfolio() {
                     <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} pt-4`}>
                       GPA: 3.857/4.0
                     </p>
+                  </div>
+                </div>
+              ) : sectionId === 'about' ? (
+                <div className="space-y-8">
+                  {/* Bio Section */}
+                  <div className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-white border-gray-300'} border-2 p-8 rounded-xl`}>
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                      <div className="flex-shrink-0">
+                        <img 
+                          src="/me.jpg"
+                          alt="Ansh Krishna"
+                          className="w-40 h-40 rounded-full object-cover shadow-xl border-4 border-purple-500"
+                        />
+                      </div>
+                      <div className="flex-1 text-center md:text-left">
+                        <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
+                          Ansh Krishna
+                        </h3>
+                        <p className={`text-xl ${darkMode ? 'text-purple-400' : 'text-purple-600'} font-semibold mb-2`}>
+                          Software Engineer | Data Analyst
+                        </p>
+                        <div className={`flex items-center justify-center md:justify-start gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
+                          <span>📍</span>
+                          <span>Based in Edison, NJ</span>
+                        </div>
+                        <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed text-lg`}>
+                          Passionate about building innovative solutions and learning new technologies. 
+                          Experienced in full-stack development with a growing interest in machine learning 
+                          and data science. Always excited to tackle challenging problems and collaborate 
+                          with talented teams to create meaningful impact.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { icon: Briefcase, label: 'Years Experience', value: '2+' },
+                      { icon: Code, label: 'Projects Built', value: '2+' }
+                    ].map((stat, index) => (
+                      <div 
+                        key={index}
+                        className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-white border-gray-300'} border-2 p-6 rounded-xl text-center hover:border-purple-500 transition-all duration-300`}
+                        style={{
+                          animation: `slideIn 0.6s ease-out ${index * 0.1}s both`
+                        }}
+                      >
+                        {React.createElement(stat.icon, { 
+                          className: `mx-auto mb-3 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`,
+                          size: 32
+                        })}
+                        <div className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-1`}>
+                          {stat.value}
+                        </div>
+                        <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Interests & Passion */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-white border-gray-300'} border-2 p-6 rounded-xl`}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Heart className={`${darkMode ? 'text-purple-400' : 'text-purple-600'}`} size={28} />
+                        <h4 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                          What I Love
+                        </h4>
+                      </div>
+                      <ul className={`space-y-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Building scalable web applications with modern frameworks</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Exploring data patterns and creating insightful visualizations</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Solving complex algorithmic challenges</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Learning about AI/ML and its real-world applications</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className={`${darkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-white border-gray-300'} border-2 p-6 rounded-xl`}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Target className={`${darkMode ? 'text-purple-400' : 'text-purple-600'}`} size={28} />
+                        <h4 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                          Current Focus
+                        </h4>
+                      </div>
+                      <ul className={`space-y-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Completing my CS degree at Rutgers University</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Working on data analytics</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Diving deeper into machine learning algorithms</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-500 mt-1">▸</span>
+                          <span>Contributing to open-source projects</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Call to Action */}
+                  <div className={`${darkMode ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-purple-500' : 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-400'} border-2 p-8 rounded-xl text-center`}>
+                    <h4 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
+                      Let's Build Something Amazing Together!
+                    </h4>
+                    <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-6 text-lg`}>
+                      I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                    </p>
+                    <a 
+                      href="#contact"
+                      className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                    >
+                      Get In Touch
+                    </a>
                   </div>
                 </div>
               ) : sectionId === 'contact' ? (
@@ -487,10 +611,18 @@ export default function Portfolio() {
                             <Briefcase size={16} />
                             <span>{item.role}</span>
                           </div>
-                          <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            <span>📍</span>
-                            <span>{item.location}</span>
-                          </div>
+                          {sectionId !== 'projects' && item.location && (
+                            <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <span>📍</span>
+                              <span>{item.location}</span>
+                            </div>
+                          )}
+                          {sectionId === 'projects' && item.skills && (
+                            <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <Code size={16} />
+                              <span>{item.skills}</span>
+                            </div>
+                          )}
                         </div>
                         <div className="text-right">
                           <span className="inline-block bg-purple-600/30 border border-purple-500 px-4 py-1 rounded-full text-sm">
