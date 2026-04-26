@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Mail, Github, Linkedin, Briefcase, GraduationCap, Code, User, Download, Moon, Sun, ArrowUp, Award, Heart, Coffee, Target, Zap, Book, Globe, Users, Laptop } from 'lucide-react';
+import { ChevronDown, Mail, Github, Linkedin, Briefcase, GraduationCap, Code, User, Download, Moon, Sun, ArrowUp, Award, Heart, Target } from 'lucide-react';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('');
@@ -11,7 +11,6 @@ export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
 
   const fullText = "Software Engineer | Data Analyst";
   const sectionOrder = ['experience', 'education', 'skills', 'projects', 'about', 'contact'];
@@ -103,13 +102,13 @@ export default function Portfolio() {
           description: 'Annotated and validated 500+ data samples using Python scripts and structured JSON schemas, improving training data consistency and increasing model accuracy. Evaluated and refined AI outputs by testing model responses, providing corrective feedback to increase human-like responses',
         },
         {
-          company: 'PALS Learning Center ',
+          company: 'PALS Learning Center',
           role: 'Tutor/Programmer',
           location: 'Edison, NJ',
           date: 'Dec 2022 - Aug 2024',
           description: 'Built and deployed staff-facing web pages with React.js and Flask, reducing manual data entry and streamlining customer management. Utilized Git/GitHub for version control and Chrome DevTools for debugging, ensuring reliable performance and maintainability of front-end systems',
         },
-         {
+        {
           company: 'NetServ',
           role: 'Programming Analyst',
           location: 'Atlanta, GA',
@@ -137,7 +136,7 @@ export default function Portfolio() {
           role: 'Personal Project',
           skills: 'Python, Flask, yfinance, Pandas, HTML, JavaScript',
           date: '2025',
-           description: 'Engineered a real-time stock analysis platform using Flask and yfinance API, implementing RSI calculation algorithms with Pandas to process 30-day historical data and generate automated buy/sell/hold recommendations based on technical indicators. Implemented Relative Strength Index (RSI) calculation algorithm using Pandas rolling window operations on 14-period price deltas, computing average gains/losses through vectorized operations to generate momentum indicators with 100-0 scale output for overbought/oversold signal detection',
+          description: 'Engineered a real-time stock analysis platform using Flask and yfinance API, implementing RSI calculation algorithms with Pandas to process 30-day historical data and generate automated buy/sell/hold recommendations based on technical indicators. Implemented Relative Strength Index (RSI) calculation algorithm using Pandas rolling window operations on 14-period price deltas, computing average gains/losses through vectorized operations to generate momentum indicators with 100-0 scale output for overbought/oversold signal detection',
           status: 'Completed'
         },
         {
@@ -218,8 +217,8 @@ export default function Portfolio() {
         }
       `}</style>
 
-      {/* Top Navigation Bar */}
-      <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+      {/* Top Navigation Bar — FIX: icons-only on mobile, labels on md+ */}
+      <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 max-w-[95vw]">
         <div className={`${darkMode ? 'bg-black/30' : 'bg-white/30'} backdrop-blur-md rounded-full px-2 py-2 flex gap-1 shadow-2xl border ${darkMode ? 'border-gray-700/50' : 'border-gray-300/50'}`}>
           {navigation.map((nav) => {
             const Icon = nav.icon;
@@ -233,12 +232,13 @@ export default function Portfolio() {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm transition-all duration-300 
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-sm transition-all duration-300 
                   ${darkMode ? 'text-gray-300' : 'text-gray-700'} hover:bg-purple-600/20 hover:text-white
                   hover:shadow-xl hover:shadow-purple-500/60 hover:scale-105`}
               >
                 <Icon size={16} />
-                <span className="font-medium">{nav.label}</span>
+                {/* FIX: hide labels on mobile, show on md+ */}
+                <span className="font-medium hidden md:inline">{nav.label}</span>
               </button>
             );
           })}
@@ -281,7 +281,8 @@ export default function Portfolio() {
         ))}
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center pt-20">
+      {/* Hero Section — FIX: added px-4 for mobile padding, smaller title on mobile */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center pt-24 px-4">
         <div className={`text-center transition-all duration-1500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="mb-8 flex justify-center">
             <img 
@@ -290,7 +291,8 @@ export default function Portfolio() {
               className={`w-48 h-48 rounded-full object-cover border-4 ${darkMode ? 'border-purple-500 shadow-purple-500/50' : 'border-purple-400 shadow-purple-400/50'} shadow-2xl hover:scale-110 transition-transform duration-300`}
             />
           </div>
-          <h1 className="text-7xl md:text-9xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
+          {/* FIX: responsive font size — smaller on mobile, large on desktop */}
+          <h1 className="text-4xl sm:text-6xl md:text-9xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
             ANSH KRISHNA
           </h1>
           <p className={`text-xl md:text-2xl ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-8 h-8`}>
@@ -327,18 +329,19 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Section containers - each takes full viewport height */}
-      {sectionOrder.map((sectionId, index) => (
+      {/* Section containers */}
+      {sectionOrder.map((sectionId) => (
         <div 
           key={sectionId} 
           id={sectionId}
           className={`relative z-10 min-h-screen flex items-center justify-center ${darkMode ? 'bg-gray-900/40' : 'bg-white/80'} backdrop-blur-md border-y-2 ${darkMode ? 'border-purple-500/30' : 'border-purple-400/30'} shadow-2xl ${darkMode ? 'shadow-purple-500/20' : 'shadow-purple-400/20'}`}
         >
-          <div className="max-w-6xl w-full px-4 py-20">
+          {/* FIX: added sm:px-8 for slightly more padding on tablets */}
+          <div className="max-w-6xl w-full px-4 sm:px-8 py-20">
             <div className="transition-all duration-700">
               {/* Section Title */}
               <div className="mb-8 border-b-2 border-purple-500/30 pb-4">
-                <h2 className={`text-5xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} flex items-center gap-3`}>
+                <h2 className={`text-4xl md:text-5xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} flex items-center gap-3`}>
                   {React.createElement(sections[sectionId].icon, { size: 40, className: 'text-purple-500' })}
                   {sections[sectionId].title}
                 </h2>
@@ -358,9 +361,9 @@ export default function Portfolio() {
                         <img 
                           src={skill.logo} 
                           alt={skill.name}
-                          className="w-20 h-20 object-contain"
+                          className="w-16 h-16 md:w-20 md:h-20 object-contain"
                         />
-                        <span className={`font-semibold text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <span className={`font-semibold text-center text-sm md:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                           {skill.name}
                         </span>
                       </div>
@@ -604,7 +607,8 @@ export default function Portfolio() {
                         animation: `slideIn 0.6s ease-out ${itemIndex * 0.1}s both`
                       }}
                     >
-                      <div className="flex justify-between items-start mb-4">
+                      {/* FIX: stack vertically on mobile, side-by-side on sm+ */}
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-2">
                         <div className="flex-1">
                           <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>{item.company}</h3>
                           <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>
@@ -620,11 +624,12 @@ export default function Portfolio() {
                           {sectionId === 'projects' && item.skills && (
                             <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                               <Code size={16} />
-                              <span>{item.skills}</span>
+                              <span className="text-sm">{item.skills}</span>
                             </div>
                           )}
                         </div>
-                        <div className="text-right">
+                        {/* FIX: no forced right-align on mobile */}
+                        <div className="sm:text-right flex-shrink-0">
                           <span className="inline-block bg-purple-600/30 border border-purple-500 px-4 py-1 rounded-full text-sm">
                             {item.date}
                           </span>
